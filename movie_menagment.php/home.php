@@ -1,40 +1,32 @@
-<?php 
- /*
-  We will include config.php for connection with database.
-  We will fetch all datas from movies in database and show them.
-  */
-	
-   include_once('config.php');
 
-   $sql = "SELECT * FROM movies";
-   $selectMovies = $conn->prepare($sql);
-   $selectMovies->execute();
-   $movies_data = $selectMovies->fetchAll();
+<?php
+session_start();
+include_once('config.php');
 
+$sql = "SELECT * FROM movies";
+$selectMovies = $conn->prepare($sql);
+$selectMovies->execute();
+$movies_data = $selectMovies->fetchAll();
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Hugo 0.88.1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <!-- Favicon - Replace with your own or remove if not needed -->
+    <link rel="icon" href="favicon.ico" />
+</head>
+<body>
 
- ?>
-
- <!DOCTYPE html>
- <html>
- <head>
- 	<title>Home</title>
- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
- 	 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-  	<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-	<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-	<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-	<meta name="theme-color" content="#7952b3">
- </head>
- <body>
-
- 	<header>
+	<header>
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
       <div class="row">
@@ -65,58 +57,63 @@
     </div>
   </div>
 </header>
- 
- 	<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <div class="album py-5 bg-light">
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Album example</h1>
+            <p class="lead text-muted">
+                Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.
+            </p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-      	<?php foreach ($movies_data as $movie_data) { ?>
+            <?php foreach ($movies_data as $movie_data): ?>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img 
+                            src="movie_images/<?php echo htmlspecialchars($movie_data['movie_image']); ?>" 
+                            height="350" 
+                            class="card-img-top" 
+                            alt="<?php echo htmlspecialchars($movie_data['movie_name']); ?>"
+                        >
 
-      	<div class="col">
-          <div class="card shadow-sm">
-
-            <img src="movie_images/<?php echo $movie_data['movie_image'];  ?>" height="350">
-
-            <div class="card-body">
-              <h4><?php echo $movie_data['movie_name']; ?></h4>
-              <p class="card-text"><?php echo $movie_data['movie_desc']; ?></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="details.php?id=<?php echo $movie_data['id']; ?>"  class="btn btn-sm btn-outline-secondary" >View</a>
-                  <a href="edit.php?id=<?php echo $movie_data['id']; ?>"  class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <div class="card-body">
+                            <h4><?php echo htmlspecialchars($movie_data['movie_name']); ?></h4>
+                            <p class="card-text"><?php echo htmlspecialchars($movie_data['movie_desc']); ?></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="details.php?id=<?php echo $movie_data['id']; ?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === "true"): ?>
+                                        <a href="edit.php?id=<?php echo $movie_data['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <?php endif; ?>
+                                </div>
+                                <small class="text-muted">Rating: <?php echo htmlspecialchars($movie_data['movie_rating']); ?></small>
+                                <small class="text-muted"><?php echo htmlspecialchars($movie_data['movie_quality']); ?></small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <small class="text-muted">Rating: <?php echo $movie_data['movie_rating']; ?></small>
-                <small class="text-muted"><?php echo $movie_data['movie_quality']; ?></small>
-              </div>
-            </div>
-          </div>
+            <?php endforeach; ?>
+
         </div>
-      		
-      <?php	} ?>
-   
-       
-
-        
-      </div>
     </div>
-  </div>
+</div>
 
-  
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYhZ7t27NXFoaoApmYm81iuXoPkFOJwJ8ERdknL" 
+        crossorigin="anonymous"></script>
 
-
- </body>
- </html>
+</body>
+</html>
