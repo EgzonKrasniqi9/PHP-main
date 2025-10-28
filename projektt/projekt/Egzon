@@ -1,0 +1,20 @@
+<?php
+try{
+    $pdo=new PDO("mysql:host=localhost; dbname=testdb",'root','');
+
+    // $username='Atik';
+
+    // $password=password_hash('mypassword',PASSWORD_DEFAULT);
+
+    // $sql="INSERT INTO users (username,pass) VALUE ('$username','$password')";
+    $sql="ALTER TABLE products ADD email VARCHAR(255)";
+
+    $pdo->exec($sql);
+
+    echo "New record created succesfully";
+
+
+}catch(DOException $e){
+    echo $e->getMessage();
+}
+?>

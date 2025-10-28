@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	error_reporting("E-NOTICE");
+	error_reporting(E_NOTICE);
 ?>
 <header>
 			<div class="wrapper">
