@@ -16,6 +16,23 @@ $users_data = $selectUsers->fetchAll();
 <?php include("header.php"); ?>
 
 <style>
+ body {
+  background-color: #e4c9a1;
+  color: #3e3e3e;
+}
+.col-md-2  {
+  background-color: #3e2f1c;
+}
+/* .sidebar-sticky{
+  background-color: #3e2f1c;
+} */
+/* .nav-link{
+  background-color: black;
+} */
+a {
+  color: #c2a878;
+}
+
   table {
     border: 1px solid black;
   }

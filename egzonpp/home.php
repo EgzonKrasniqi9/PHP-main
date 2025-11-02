@@ -11,18 +11,18 @@ $title = "Muzeu Kombëtar - Faqja Kryesore";
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color:   #e4c9a1;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #343a40;
+            background-color: #3e2f1c;
             color: white;
             text-align: center;
             padding: 25px 0;
         }
         nav {
-            background-color: #495057;
+            background-color: #3e2f1c;
             text-align: center;
             padding: 10px;
         }
@@ -74,7 +74,7 @@ $title = "Muzeu Kombëtar - Faqja Kryesore";
             padding: 0 10px;
         }
         footer {
-            background-color: #343a40;
+            background-color: #3e2f1c;
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -86,7 +86,10 @@ $title = "Muzeu Kombëtar - Faqja Kryesore";
 
 <header>
     <h1>Muzeu Kombëtar</h1>
-    <p>Mirë se vini në muzeun që ruan historinë dhe kulturën tonë!</p>
+    <p>Mirë se vini në Muzeun tonë!
+Një udhëtim përmes kohës, ku çdo objekt ruan kujtimet e një <br> epoke dhe çdo sallë tregon një histori.
+Që nga artefaktet e lashta e deri te ekspozitat bashkëkohore, <br> muzeu ynë është një urë midis të kaluarës, të tashmes dhe brezave që vijnë.
+Ejani dhe zbuloni trashëgiminë që na bashkon – <br> një përvojë që frymëzon, mëson dhe ngjall respekt për historinë tonë të përbashkët.</p>
 </header>
 
 <nav>
@@ -122,21 +125,25 @@ Ajo u përdor më 2 qershor 1953, gjatë ceremonisë në Westminster Abbey në L
                 <img src="photo/OIP.jpg" alt="Koleksioni 2" >
                 <h3>Shpata e Napoleonit</h3>
                 <p>Shpata ishte një armë ceremoniale, e cila u përdor nga Napoleon Bonaparti gjatë fushatave të tij ushtarake në fillim të shekullit XIX.
-Nuk ishte një armë e zakonshme lufte — por një simbol i autoritetit dhe nderit ushtarak.</p>
+                Nuk ishte një armë e zakonshme lufte — por një simbol i autoritetit dhe nderit ushtarak.</p>
             </div>
 
             <div class="koleksion">
                 <img src="photo/skender.jpg" alt="Koleksioni 3">
                 <h3>shpata e Skenderbeut</h3>
                 <p>Shpata origjinale e Skënderbeut është një armë e gjatë dhe e rëndë, e punuar me çelik të lartë cilësor.
-
-Pesha e saj është rreth 3 kilogramë, që tregon fuqinë fizike të madhe që kishte heroi për ta përdorur.
-
-Tehu është i drejtë dhe i gjerë, me majë të mprehtë, tipike për armët e shekullit XV.
-
-Doreza është e punuar me kujdes, e stolisur me argjend dhe ar, dhe ka në mes një mbishkrim latin.</p>
+                    Pesha e saj është rreth 3 kilogramë, që tregon fuqinë fizike të madhe që kishte heroi për ta përdorur.
+                    Tehu është i drejtë dhe i gjerë, me majë të mprehtë, tipike për armët e shekullit XV.
+                    Doreza është e punuar me kujdes, e stolisur me argjend dhe ar, dhe ka në mes një mbishkrim latin.</p>       
             </div>
         </div>
+           <br> <div class="koleksion">
+                <img src="photo/lisa.jpg" alt="Koleksioni 3">
+                <h3>Piktura e Monalises</h3>
+                <p>E ka pikturuar Leonardo da Vinci rreth viteve 1503–1506, ndoshta duke e përmirësuar edhe më vonë.
+Është pikturuar me bojë vaji mbi dru plepi (poplar wood) — jo në kanavacë si shumica e pikturave të tjera.</p>       
+            </div>
+        </div>     
     </section>
 
     <hr>

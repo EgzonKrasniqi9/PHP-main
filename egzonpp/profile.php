@@ -45,6 +45,12 @@ session_start();
               Edit Profile
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="home.php?id=<?= $user_data['id'];?>">
+              <span data-feather="file"></span>
+              Home
+            </a>
+          </li>
     
         </ul>
 
@@ -87,5 +93,10 @@ session_start();
     </main>
   </div>
 </div>
-
+<style>
+   body {
+  background-color: #e4c9a1;
+  color: #3e3e3e;
+}
+</style>
 <?php include("footer.php"); ?>
