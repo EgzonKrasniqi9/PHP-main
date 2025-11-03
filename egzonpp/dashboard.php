@@ -6,7 +6,6 @@ if (empty($_SESSION['username'])) {
     exit;
 }
 
-// merr të dhënat e përdoruesve
 $sql = "SELECT * FROM users";
 $selectUsers = $conn->prepare($sql);
 $selectUsers->execute();
@@ -16,40 +15,133 @@ $users_data = $selectUsers->fetchAll();
 <?php include("header.php"); ?>
 
 <style>
- body {
-  background-color: #e4c9a1;
-  color: #3e3e3e;
-}
-.col-md-2  {
-  background-color: #3e2f1c;
-}
-/* .sidebar-sticky{
-  background-color: #3e2f1c;
-} */
-/* .nav-link{
-  background-color: black;
-} */
-a {
-  color: #c2a878;
+/* --- PËRGJITHSHME --- */
+body {
+  background: url('images/museum-bg.jpg') no-repeat center center/cover;
+  font-family: 'Playfair Display', serif;
+  color: #3e2f1c;
+  margin: 0;
+  padding: 0;
 }
 
-  table {
-    border: 1px solid black;
+/* --- NAVBAR --- */
+.navbar {
+  background-color: #3e2f1c !important;
+  border-bottom: 3px solid #b89b6c;
+}
+
+.navbar-brand {
+  color: #f3e6cc !important;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #e4cfa3 !important;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  background-color: rgba(62, 47, 28, 0.95);
+  min-height: 100vh;
+  padding-top: 30px;
+  border-right: 2px solid #b89b6c;
+}
+
+.sidebar .nav-link {
+  color: #d5c19e !important;
+  font-weight: 500;
+  padding: 12px 15px;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #b89b6c;
+  color: #fff !important;
+  border-radius: 5px;
+}
+
+/* --- PËRMBAJTJA KRYESORE --- */
+main {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  margin-top: 80px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(62, 47, 28, 0.2);
+}
+
+h1.h2 {
+  color: #6b4e1f;
+  border-bottom: 2px solid #b89b6c;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+
+/* --- TABELA --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f8f4ec;
+  border: 1px solid #b89b6c;
+  box-shadow: 0 0 10px rgba(62, 47, 28, 0.1);
+}
+
+th {
+  background-color: #b89b6c;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #d8c9a1;
+}
+
+tr:nth-child(even) {
+  background-color: #fdfaf4;
+}
+
+tr:hover {
+  background-color: #f0e5d2;
+}
+
+a {
+  color: #6b4e1f;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #b89b6c;
+  text-decoration: underline;
+}
+
+/* --- PËR MOBILE --- */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
   }
-  tr, td, th {
-    border: 1px solid black;
+  main {
+    margin-top: 100px;
   }
-  table, tr, td {
-    border-collapse: collapse;
-  }
-  td {
-    padding: 10px;
-  }
+}
 </style>
 
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+<nav class="navbar navbar-dark fixed-top p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
-    Welcome, <i><?php echo $_SESSION['username']; ?></i>
+    🏛️ Welcome, <i><?php echo $_SESSION['username']; ?></i>
   </a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
@@ -62,32 +154,26 @@ a {
   <div class="row">
     
     <!-- Sidebar -->
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="col-md-2 d-none d-md-block sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
 
           <li class="nav-item">
             <a class="nav-link active" href="dashboard.php">
-              <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              🏠 Dashboard
             </a>
           </li>
 
-          <!-- Edit Profile -->
-          <li class="nav-item">
-            <?php foreach ($users_data as $user_data) { ?>
-              <a class="nav-link" href="profile.php?id=<?= $user_data['id']; ?>">
-                <span data-feather="user"></span>
-                Edit Profile
-              </a>
-            <?php } ?>
-          </li>
+        
 
-          <!-- 🌟 Home link i ri -->
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php" <?= $user_data['id']; ?>>
+              Edit Profile
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="home.php">
-              <span data-feather="book"></span>
-              Home
+              📚 Home
             </a>
           </li>
 
@@ -97,13 +183,12 @@ a {
 
     <!-- Main Content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+      <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Museum Dashboard</h1>
       </div>  
 
       <div>
         <?php 
-        // marrim përdoruesit për tabelën
         include_once('config.php');
         $getUsers = $conn->prepare("SELECT * FROM users");
         $getUsers->execute();
@@ -118,7 +203,7 @@ a {
               <th>Name</th>
               <th>Surname</th>
               <th>Email</th>
-              <th>Update</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -131,8 +216,8 @@ a {
               <td><?= $user['surname'] ?></td> 
               <td><?= $user['email'] ?></td>
               <td>
-                <a href="delete.php?id=<?= $user['id'] ?>">Delete</a> |
-                <a href="profile.php?id=<?= $user['id'] ?>">Update</a>
+                <a href="profile.php?id=<?= $user['id'] ?>">✏️ Update</a> |
+                <a href="delete.php?id=<?= $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?');">🗑️ Delete</a>
               </td>
             </tr>
           <?php endforeach; ?>
