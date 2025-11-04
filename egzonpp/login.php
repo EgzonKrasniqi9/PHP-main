@@ -93,7 +93,7 @@ small a {
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
     
     <small>Don’t have an account? <a href="signup.php">Sign Up</a></small>
-    <p class="mt-5 mb-3 text-muted">© 2025 Museum of Digital Culture</p>
+    <p class="mt-5 mb-3 text-muted">© 2025 Museum of Egzon Krasniqi </p>
   </form>
 </div>
 

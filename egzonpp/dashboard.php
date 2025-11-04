@@ -163,14 +163,15 @@ a:hover {
               🏠 Dashboard
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile.php">
+              👤   Edit Profile
+            </a>
+          </li>
 
         
 
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php" <?= $user_data['id']; ?>>
-              Edit Profile
-            </a>
-          </li>
+      
           <li class="nav-item">
             <a class="nav-link" href="home.php">
               📚 Home

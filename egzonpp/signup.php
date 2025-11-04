@@ -104,7 +104,7 @@ small a {
 
     <small>Already have an account? <a href="login.php">Log In</a></small>
 
-    <p class="mt-5 mb-3 text-muted">© 2025 Museum of Digital Culture</p>
+    <p class="mt-5 mb-3 text-muted">© 2025 Museum of Egzon Krasniqi</p>
   </form>
 </div>
 
