@@ -76,11 +76,11 @@ INSERT INTO `movies` (`id`, `movie_name`, `movie_desc`, `movie_quality`, `movie_
 
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
-  `emri` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `surname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) NOT NULL,
   `is_admin` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
