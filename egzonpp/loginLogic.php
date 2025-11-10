@@ -5,29 +5,56 @@ session_start();
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
-// Shembull: përdorues dhe role të thjeshta
-$users = [
-    'admin' => ['password' => 'admin123', 'role' => 'admin'],
-    'egzon' => ['password' => 'user123', 'role' => 'user']
-];
+// Krijojmë lidhjen me databazën
+$host = "127.0.0.1";
+$user = "root";  // ndrysho nëse ke tjetër user
+$pass = "";      // ndrysho nëse ke password
+$db = "db";
 
-// Kontrollojmë nëse përdoruesi ekziston
-if(isset($users[$username]) && $users[$username]['password'] === $password){
-    $_SESSION['username'] = $username;
-    $_SESSION['role'] = $users[$username]['role'];
+$conn = new mysqli($host, $user, $pass, $db);
 
-    // Dërgo në faqe të ndryshme sipas rolit
-    if($_SESSION['role'] === 'admin'){
-        header("Location: dashboard.php");
-        exit();
+// Kontrollojmë lidhjen
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Përgatitim query për të marrë përdoruesin me username të dhënë
+$stmt = $conn->prepare("SELECT id, username, password, role FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if($result->num_rows === 1){
+    $row = $result->fetch_assoc();
+
+    // Kontrollojmë password-in hashed
+    if(password_verify($password, $row['password'])){
+        // Login i suksesshëm
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['role'] = $row['role'];
+
+        // Ridrejto sipas role
+        if($_SESSION['role'] === 'admin'){
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            header("Location: user.php");
+            exit();
+        }
     } else {
-        header("Location: user.php");
+        // Password gabim
+        $_SESSION['error'] = "Username ose password gabim!";
+        header("Location: login.php");
         exit();
     }
+
 } else {
-    // Login gabim, ridrejto te faqja e login-it me mesazh
+    // Username nuk ekziston
     $_SESSION['error'] = "Username ose password gabim!";
     header("Location: login.php");
     exit();
 }
+
+$stmt->close();
+$conn->close();
 ?>
