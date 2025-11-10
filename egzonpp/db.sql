@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2023 at 04:07 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Nov 10, 2025 at 10:59 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,16 +33,21 @@ CREATE TABLE `users` (
   `surname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `surname`, `username`, `email`, `password`) VALUES
-(1, 'John', 'Doe', 'johndoe', 'johndoe@mail.com', '$2y$10$4kAii3oJMFLZnyy5Jdfj5OAsMPaRcj4Or8F/4XXdccuC329YkuLaG'),
-(2, 'Jane', 'Doe', 'janedoe', 'janedoe@mail.com', '$2y$10$JzYz38MXRWUcrpOOgh61VefY0Mx/4gPUOiSndmYS5mD5VNZ4wOacm');
+INSERT INTO `users` (`id`, `name`, `surname`, `username`, `email`, `password`, `role`) VALUES
+(12, 'egzon', 'krasniqi', 'test', 'test@gmail.com', '$2y$10$yasSkQcVzm/8WECzJOBlzOg2FO8DBt6YpTxJhTR3l54Qb7u/DXuDa', ''),
+(13, 'ggg', 'ggg', 'ggg', 'test@gmail.com', '$2y$10$ccz15oj2Tj.bWa4yfzmmzeBS8SPeS1KF2/4YqH55CRgYng7mbrcCC', ''),
+(14, 'lis', 'lis', 'lis', 'test@gmail.com', '$2y$10$x4JCC21zGSbMrT/Nmwi4LO1Yg/bC9HKNTpq4fic0lm0q.CqGUWwLy', ''),
+(15, 'melina', 'melina', 'melina', 'test@gmail.com', '$2y$10$MyQCbNfYRKyodo1V0/HVLO4GivlBIibRpr1nkYoppQKokfZr0qJju', ''),
+(16, 'egzon', 'egzon', 'egzon', 'test@gmail.com', '$2y$10$axigFe5.Eof7XftOJVXeNOcPjezaJ7XAiQYv9NZu8AzrlYhCLj10u', ''),
+(17, 'krasniqi', 'krasniqi', 'krasniqi', 'test@gmail.com', '$2y$10$2BhfVpuTTGx09p/d1nFvuegN9J5zA0d36PlifSx9T/3sLaD11OjKu', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +67,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

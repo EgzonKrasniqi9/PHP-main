@@ -1,34 +1,33 @@
-<?php 
+<?php
+session_start();
 
-require 'config.php';
+// Marrim të dhënat nga forma
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
 
-if(isset($_POST['submit']))
-{
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+// Shembull: përdorues dhe role të thjeshta
+$users = [
+    'admin' => ['password' => 'admin123', 'role' => 'admin'],
+    'egzon' => ['password' => 'user123', 'role' => 'user']
+];
 
-  if(empty($username) || empty($password))
-  {
-    echo "Fill all the fields!";
-    header( "refresh:2; url=login.php" ); 
-  }else{
-    $sql = "SELECT * FROM users WHERE username=:username";
-    $insertSql = $conn->prepare($sql);
-    $insertSql->bindParam(':username', $username);
+// Kontrollojmë nëse përdoruesi ekziston
+if(isset($users[$username]) && $users[$username]['password'] === $password){
+    $_SESSION['username'] = $username;
+    $_SESSION['role'] = $users[$username]['role'];
 
-    $insertSql->execute();
-    
-    if($insertSql->rowCount() > 0) {
-        $data=$insertSql->fetch();
-        if(password_verify($password,$data['password'])){
-          $_SESSION['username']=$data['username'];
-          header("Location: dashboard.php");
-        }else{
-          echo "Password incorrect";
-          header( "refresh:2; url=login.php" );
-        }
+    // Dërgo në faqe të ndryshme sipas rolit
+    if($_SESSION['role'] === 'admin'){
+        header("Location: dashboard.php");
+        exit();
     } else {
-        echo "User not found!!";
+        header("Location: user.php");
+        exit();
     }
-  }
+} else {
+    // Login gabim, ridrejto te faqja e login-it me mesazh
+    $_SESSION['error'] = "Username ose password gabim!";
+    header("Location: login.php");
+    exit();
 }
+?>

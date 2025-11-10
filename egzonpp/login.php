@@ -96,5 +96,8 @@ small a {
     <p class="mt-5 mb-3 text-muted">© 2025 Museum of Egzon Krasniqi </p>
   </form>
 </div>
+ 
+if youar admin open dashboard.php 
+ealse if youar user open user.php
 
 <?php include("footer.php"); ?>
