@@ -169,9 +169,15 @@ h1.h2 {
           <li class="nav-item">
             <a class="nav-link active" href="profile.php?id=<?= $user_data['id']; ?>">👤 Edit Profile</a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="user.php">
+              👤   
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="home.php">📚 Home</a>
           </li>
+          
         </ul>
       </div>
     </nav>

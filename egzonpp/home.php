@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+// Shembull i thjeshtë për testim
+// Mund ta ndryshosh varësisht nga mënyra si bëhet login te projekti yt
+// $_SESSION['roli'] = 'admin'; // ose 'user'
+
 $title = "Muzeu Kombëtar - Faqja Kryesore";
 ?>
 
@@ -187,6 +193,7 @@ footer {
   border-top: 4px solid var(--ngjyra-sekundare);
   box-shadow: inset 0 5px 10px rgba(0,0,0,0.3);
 }
+
 .btn {
   display: inline-block;
   background-color: #b89b6c;
@@ -206,7 +213,6 @@ footer {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-
 footer:hover {
   background: linear-gradient(to right, #4b3823, #6b512e, #4b3823);
   transition: 0.4s ease;
@@ -222,10 +228,20 @@ footer:hover {
 </header>
 
 <nav>
-  <a href="dashboard.php">Dashboard</a>
+  <a href="user.php"><--</a>
+  
+  <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+      <a class="dash" href="dashboard.php">Dashboard</a>
+  <?php endif; ?>
+
   <a href="#rreth">Rreth Nesh</a>
   <a href="#koleksione">Koleksione</a>
   <a href="#kontakt">Kontakt</a>
+    <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="logout.php">Sign out</a>
+    </li>
+  </ul>
 </nav>
 
 <div class="container">
@@ -244,48 +260,53 @@ footer:hover {
       <img src="photo/eliza.jpg" alt="Kurora e Elizabeth">
       <h3>Kurora e Elizabeth</h3>
       <p>Kurora e Shën Eduardit e përdorur në ceremoninë e kurorëzimit të Mbretëreshës Elizabeth II më 2 qershor 1953.</p>
-      <a href="artikulli-elizabeth.php" class="btn">Lexo më shumë</a>
+      <a href="#" class="btn" onclick="shkoArtikull('artikulli-elizabeth.php')">Lexo më shumë</a>
+
     </div>
 
     <div class="koleksion">
       <img src="photo/OIP.jpg" alt="Shpata e Napoleonit">
       <h3>Shpata e Napoleonit</h3>
       <p>Një armë ceremoniale që simbolizonte autoritetin dhe nderin ushtarak të Napoleon Bonapartit.</p>
-      <a href="artikulli-napoleon.php" class="btn">Lexo më shumë</a>
+      <a href="#" class="btn" onclick="shkoArtikull('artikulli-napoleon.php')">Lexo më shumë</a>
+
+      
     </div>
 
     <div class="koleksion">
       <img src="photo/skender.jpg" alt="Shpata e Skënderbeut">
       <h3>Shpata e Skënderbeut</h3>
       <p>Një armë e rëndë dhe e punuar me mjeshtëri, simbol i forcës dhe guximit të Heroit tonë Kombëtar.</p>
-      <a href="artikulli-skenderbeu.php" class="btn">Lexo më shumë</a>
+      <a href="#" class="btn" onclick="shkoArtikull('artikulli-elizabeth.php')">Lexo më shumë</a>
+
     </div>
 
     <div class="koleksion">
       <img src="photo/lisa.jpg" alt="Piktura e Monalisës">
       <h3>Piktura e Monalisës</h3>
       <p>Pikturuar nga Leonardo da Vinci rreth viteve 1503–1506, një nga veprat më të njohura në historinë e artit botëror.</p>
-      <a href="artikulli-monalisa.php" class="btn">Lexo më shumë</a>
+     <a href="#" class="btn" onclick="shkoArtikull('artikulli-elizabeth.php')">Lexo më shumë</a>
+
     </div>
 
     <div class="koleksion">
       <img src="photo/nefertit.jpg" alt="Busti i Nefertitit">
       <h3>Busti i Nefertitit</h3>
       <p>Busti 3,300-vjeçar i Mbretëreshës egjiptiane Nefertiti, një kryevepër e artit të lashtë egjiptian me ngjyrat origjinale ende të ruajtura.</p>
-      <a href="artikulli-nefertiti.php" class="btn">Lexo më shumë</a>
+     <a href="#" class="btn" onclick="shkoArtikull('artikulli-elizabeth.php')">Lexo më shumë</a>
+
     </div>
 
     <div class="koleksion">
       <img src="photo/tut.jpg" alt="Maska e Tutankhamunit">
       <h3>Maska e Tutankhamunit</h3>
       <p>Maska prej ari 24 karatësh e Faraonit Tutankhamun — një nga objektet më ikonike dhe të çmuara të Egjiptit të lashtë.</p>
-      <a href="artikulli-tutankhamun.php" class="btn">Lexo më shumë</a>
+     <a href="#" class="btn" onclick="shkoArtikull('artikulli-elizabeth.php')">Lexo më shumë</a>
+
     </div>
   </div>
 </section>
 <br><br>
-
-
 
 <section id="kontakt">
   <h2>📞 Kontakt</h2>
@@ -298,6 +319,25 @@ footer:hover {
 <footer>
   &copy; <?= date("Y"); ?> Muzeu Kombëtar. Të gjitha të drejtat e rezervuara.
 </footer>
+<script>
+function shkoArtikull(artikulli) {
+    // PHP do e zëvendësojë këtë pjesë me rolin aktual
+    const roli = "<?= isset($_SESSION['role']) ? $_SESSION['role'] : 'guest' ?>";
+    
+    if (roli === 'admin') {
+        // Nëse është admin, e çon tek faqja e artikullit
+        window.location.href = artikulli;
+    } else if (roli === 'user') {
+        // Nëse është user, e çon tek dashboard.php
+        alert("Ky artikull është i disponueshëm vetëm për administratorin!     Paguaj per te par me shum");
+        
+    } else {
+        // Nëse s’është as user as admin (pa hyrje)
+        alert("Ju lutem hyni për të parë artikujt!");
+        window.location.href = "login.php";
+    }
+}
+</script>
 
 </body>
 </html>

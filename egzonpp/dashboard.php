@@ -168,6 +168,11 @@ a:hover {
               👤   Edit Profile
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="user.php">
+              👤   
+            </a>
+          </li>
 
         
 
