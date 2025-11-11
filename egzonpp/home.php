@@ -328,7 +328,7 @@ function shkoArtikull(artikulli) {
         // Nëse është admin, e çon tek faqja e artikullit
         // window.location.href = artikulli;
         // window.location.href = "dashboard.php";
-                alert("Ky artikull është i disponueshëm vetëm për Ty!  Vetem nreqe edhe tbon okej");
+                alert("Ky artikull është i disponueshëm vetëm për Ty!  Vetem ndreqe edhe tbon okej");
 
     } else if (roli === 'user') {
         // Nëse është user, e çon tek dashboard.php
