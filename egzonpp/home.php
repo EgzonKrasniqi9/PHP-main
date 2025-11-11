@@ -326,10 +326,13 @@ function shkoArtikull(artikulli) {
     
     if (roli === 'admin') {
         // Nëse është admin, e çon tek faqja e artikullit
-        window.location.href = artikulli;
+        // window.location.href = artikulli;
+        // window.location.href = "dashboard.php";
+                alert("Ky artikull është i disponueshëm vetëm për Ty!  Vetem nreqe edhe tbon okej");
+
     } else if (roli === 'user') {
         // Nëse është user, e çon tek dashboard.php
-        alert("Ky artikull është i disponueshëm vetëm për administratorin!     Paguaj per te par me shum");
+        alert("Ky artikull është i disponueshëm vetëm për administratorin!  Paguaj per te par me shum");
         
     } else {
         // Nëse s’është as user as admin (pa hyrje)
